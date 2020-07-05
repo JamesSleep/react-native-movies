@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import Protypes from "prop-types";
+import PropTypes from "prop-types";
 import { apiImage } from "../../api";
 import Poster from "../Poster";
 import { TouchableOpacity } from "react-native";
@@ -79,12 +79,13 @@ const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => (
 );
 
 
-Slide.prototype = {
-  id: Protypes.number.isRequired,
-  title: Protypes.string.isRequired,
-  backgroundImage: Protypes.string.isRequired,
-  votes: Protypes.number.isRequired,
-  overview: Protypes.string.isRequired
+Slide.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  backgroundImage: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
+  overview: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired
 };
 
 export default Slide;
