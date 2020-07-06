@@ -8,6 +8,7 @@ import Vertical from "../../components/Vertical";
 import Horizontal from "../../components/Horizontal";
 import ScrollContainer from "../ScrollContainer";
 import HorizontalSlider from "../../components/HorizontalSlider";
+import List from "../../components/List";
 
 const { width:WIDTH, height: HEIGHT } = Dimensions.get("window");
 
@@ -56,8 +57,7 @@ export default ({loading, nowPlaying, popular, upcoming}) => {
               />
             )}
           </HorizontalSlider>
-          <Title title={"Coming Soon"} />
-          <UpcomingContainer>
+          <List title="Comming Soon">
             {upcoming.map(movie => (
               <Horizontal 
                 key={movie.id}
@@ -68,7 +68,7 @@ export default ({loading, nowPlaying, popular, upcoming}) => {
                 overview={movie.overview}
               />
             ))}
-          </UpcomingContainer>
+          </List>
         </Container>
       </>
     </ScrollContainer>
