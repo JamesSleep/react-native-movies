@@ -12,6 +12,7 @@ export default () => {
   })
   const onChange = (text) => setKeyword(text);
   const search = async () => {
+    if (keyword === "") return;
     const [movies, movieError] = await movieApi.search(keyword);
     const [shows, showsError] = await tvApi.search(keyword);
     setResult({

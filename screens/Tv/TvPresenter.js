@@ -6,8 +6,8 @@ import List from "../../components/List";
 import Horizontal from "../../components/Horizontal";
 
 
-export default ({ loading, popular, topRated, today }) => (
-  <ScrollContainer loading={loading}>
+export default ({ refreshFn, loading, popular, topRated, today }) => (
+  <ScrollContainer refreshFn={refreshFn} loading={loading}>
     <HorizontalSlider title="Popular Shows">
       {popular.map(show => (
         <Vertical 

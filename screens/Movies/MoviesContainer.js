@@ -31,6 +31,6 @@ export default () => {
   },[]);
 
   return (
-    <MoviesPresenter {...movies}/>
+    <MoviesPresenter refreshFn={getData} {...movies}/>
   );
 };
