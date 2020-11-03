@@ -1,10 +1,10 @@
 import React from "react";
 import { Dimensions } from "react-native";
 import styled from "styled-components/native";
-import { apiImage } from "../api";
-import Poster from "../components/Poster";
-import Votes from "../components/Votes";
-import ScrollContainer from "./ScrollContainer";
+import { apiImage } from "../../api";
+import Poster from "../../components/Poster";
+import Votes from "../../components/Votes";
+import ScrollContainer from "../ScrollContainer";
 
 const BG = styled.Image`
   width: 100%;
@@ -55,29 +55,21 @@ const DataValue = styled.Text`
   font-weight: 500;
 `;
 
-export default ({ 
-  navigation,
-  route: { 
-    params: { id, title, backgroundImage, poster, votes, overview }
-  } 
-}) => {
-  navigation.setOptions({ title });
-  return (
-    <ScrollContainer loading={false}>
-      <Header>
-        <BG source={{ uri: apiImage(backgroundImage, "-") }} />
-        <Container>
-          <Poster url={poster} />
-          <Info>
-            <Title>{title}</Title>
-            { votes && <Votes votes={votes} /> }
-          </Info>
-        </Container>
-      </Header>
-      <Data>
-        <DataName>Overview</DataName>
-        <DataValue>{overview}</DataValue>
-      </Data>
-    </ScrollContainer>
-  )
-}
+export default ({ backgroundImage, title, votes, overview, poster }) => (
+  <ScrollContainer loading={false}>
+    <Header>
+      <BG source={{ uri: apiImage(backgroundImage, "-") }} />
+      <Container>
+        <Poster url={poster} />
+        <Info>
+          <Title>{title}</Title>
+          { votes && <Votes votes={votes} /> }
+        </Info>
+      </Container>
+    </Header>
+    <Data>
+      <DataName>Overview</DataName>
+      <DataValue>{overview}</DataValue>
+    </Data>
+  </ScrollContainer>
+);
