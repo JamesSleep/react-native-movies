@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { movieApi } from "../../api";
+import { movieApi, tvApi } from "../../api";
 import DetailPresenter from "./DetailPresenter";
 
-export default ({ 
+export default ({
   navigation,
-  route: { 
-    params: { id, title, backgroundImage, poster, votes, overview }
-  } 
+  route: {
+    params: { isTv, id, title, backgroundImage, poster, votes, overview }
+  }
 }) => {
+  const [loading, setLoading] = useState(true);
   const [movie, setMovie] = useState({
     title,
     backgroundImage,
@@ -16,7 +17,12 @@ export default ({
     overview
   });
   const getData = async () => {
-    const [getMovie, getMovieError] = await movieApi.movie(id);
+    if (isTv) {
+      const [getMovie, getMovieError] = await tvApi.show(id);
+    } else {
+
+      const [getMovie, getMovieError] = await movieApi.movie(id);
+    }
     setMovie({
       ...getMovie,
       title: getMovie.title,
@@ -25,6 +31,7 @@ export default ({
       votes: getMovie.vote_average,
       overview: getMovie.overview
     });
+    setLoading(false);
   }
   useEffect(() => {
     getData();
@@ -33,6 +40,6 @@ export default ({
     navigation.setOptions({ title });
   });
   return (
-    <DetailPresenter {...movie} />
+    <DetailPresenter movie={movie} loading={loading} />
   )
 }

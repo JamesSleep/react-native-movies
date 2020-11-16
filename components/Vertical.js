@@ -18,10 +18,11 @@ const Title = styled.Text`
     margin: 10px 0px 5px 0px;
 `;
 
-const Vertical = ({id, poster, title, votes}) =>{
+const Vertical = ({ isTv = false, id, poster, title, votes }) => {
     const navigation = useNavigation();
     const goToDetail = () => {
-        navigation.navigate("Detail", { 
+        navigation.navigate("Detail", {
+            isTv,
             id,
             title,
             poster,
@@ -31,13 +32,13 @@ const Vertical = ({id, poster, title, votes}) =>{
     return (
         <TouchableOpacity onPress={goToDetail}>
             <Container>
-                <Poster url={poster}/>
+                <Poster url={poster} />
                 <Title>{trimText(title, 10)}</Title>
-                {votes > 0 && <Votes votes={votes}/>}
+                {votes > 0 && <Votes votes={votes} />}
             </Container>
         </TouchableOpacity>
     )
-} 
+}
 
 Vertical.propTyeps = {
     id: PropTypes.number.isRequired,

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { ScrollView, ActivityIndicator, RefreshControl } from "react-native";
 
-const ScrollContainer = ({ 
-  loading, 
-  children, 
+const ScrollContainer = ({
+  loading,
+  children,
   contentContainerStyle,
   refreshFn
 }) => {
@@ -17,28 +17,28 @@ const ScrollContainer = ({
   return (
     <ScrollView
       refreshControl={
-        <RefreshControl 
+        <RefreshControl
           onRefresh={onRefresh}
           refreshing={refreshing}
           enabled={false}
-          tintColor={"white"} 
+          tintColor={"white"}
         />
       }
       style={{ backgroundColor: "black" }}
       contentContainerStyle={{
-        flex: loading ? 1 : "auto",
+        flex: loading ? 1 : 0,
         justifyContent: loading ? "center" : "flex-end",
         ...contentContainerStyle
       }}
     >
       {loading ? (
-        <ActivityIndicator color="white" size="small"/>
+        <ActivityIndicator color="white" size="small" />
       ) : children}
     </ScrollView>
   )
 }
 
-ScrollContainer.propTypes={
+ScrollContainer.propTypes = {
   loading: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   contentContainerStyle: PropTypes.object,
